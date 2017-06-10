@@ -15,7 +15,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         Icon="favicon.ico"
         mc:Ignorable="d"
-        Title="HADE Manager" Height="700" Width="1100">
+        Title="HADE Manager" Height="600" Width="1240">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -40,7 +40,9 @@
                             <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
                         </StackPanel>
                     </materialDesign:PopupBox>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">A ver si ya queda puto HADE con Material Design</TextBlock>
+                    <Image Source="lns_azul_claro.png" Height="30" HorizontalAlignment="Left" Margin="16 0 0 0 "/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 0 86 0">HADE Manager</TextBlock>
                 </DockPanel>
             </materialDesign:ColorZone>
             <Grid>
@@ -50,28 +52,72 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <ScrollViewer HorizontalAlignment="Right" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="16 0 16 16" materialDesign:ShadowAssist.ShadowDepth="Depth3">
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 8 0" Width="100"
-                    ToolTip="Resource name: MaterialDesignFlatButton">
-                                _HOME
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Column="0" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                        <StackPanel Orientation="Horizontal" Margin="16 0 8 8" HorizontalAlignment="Left">
+                            <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 4 0" x:Name="HomeButton"
+                    ToolTip="Resource name: MaterialDesignFlatButton" ToolTipService.InitialShowDelay="500">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Home" />
+                                    <AccessText Margin="8 0 0 0" Text="_Home"/>
+                                </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 8 0" Width="Auto"
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="RondinButton"
                     ToolTip="Resource name: MaterialDesignFlatButton">
-                                _Verificaciónes
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Verified" />
+                                    <AccessText Margin="8 0 0 0" Text="_Rondines"/>
+                                </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 8 0" Width="100"
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="SolicitudButton"
                     ToolTip="Resource name: MaterialDesignFlatButton">
-                                _Errores
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="EmailOutline" />
+                                    <AccessText Margin="8 0 0 0" Text="_Solicitudes de Soporte"/>
+                                </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 16 0" Width="100"
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="OrdenButton"
                     ToolTip="Resource name: MaterialDesignFlatButton">
-                                _Algo más
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Wrench" />
+                                    <AccessText Margin="8 0 0 0" Text="_Ordenes de Servicio"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="StockButton"
+                    ToolTip="Resource name: MaterialDesignFlatButton">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="PackageVariantClosed" />
+                                    <AccessText Margin="8 0 0 0" Text="_Stock"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="VerificaButton"
+                    ToolTip="Resource name: MaterialDesignFlatButton">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="CheckboxMultipleMarkedOutline" />
+                                    <AccessText Margin="8 0 0 0" Text="_Verificaciones"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="UsuariosButton"
+                    ToolTip="Resource name: MaterialDesignFlatButton">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AccountMultiple" />
+                                    <AccessText Margin="8 0 0 0" Text="_Usuarios"/>
+                                </StackPanel>
                             </Button>
                         </StackPanel>
                     </ScrollViewer>
-                    <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" />
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="16 0 8 8" HorizontalAlignment="Right">
+                        <materialDesign:Chip Content="Karen Escribano" Margin="0 12 8 0">
+                            <materialDesign:Chip.Icon>
+                                <Image Source="favicon.ico" />
+                            </materialDesign:Chip.Icon>
+                        </materialDesign:Chip>
+                    </StackPanel>
                 </Grid>
+                <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" />
 
                 <ScrollViewer Grid.Row="1" 
                                   HorizontalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
@@ -80,7 +126,8 @@
                     <ContentControl Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
                 </ScrollViewer>
 
-                <!--<materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" Grid.Row="1" /> -->
+                <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" MinWidth="10" Grid.Row="1" />
+
             </Grid>
         </DockPanel>
     </materialDesign:DialogHost>
