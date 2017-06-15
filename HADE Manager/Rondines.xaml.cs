@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace HADE_Manager
 {
     /// <summary>
-    /// Lógica de interacción para Page1.xaml
+    /// Lógica de interacción para Rondines.xaml
     /// </summary>
-    public partial class SampleMessageDialog : UserControl
+    public partial class Rondines : UserControl
     {
-        public SampleMessageDialog()
+        public Rondines()
         {
             InitializeComponent();
         }

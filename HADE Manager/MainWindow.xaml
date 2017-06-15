@@ -26,110 +26,144 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <materialDesign:DialogHost Identifier="RootDialog">
-        <DockPanel>
-            <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                                            Mode="PrimaryMid" DockPanel.Dock="Top">
-                <DockPanel>
-                    <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
-                        <StackPanel>
-                            <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
-                            <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
-                            <Button Content="Can't Touch This" IsEnabled="False" />
-                            <Separator/>
-                            <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
-                        </StackPanel>
-                    </materialDesign:PopupBox>
-                    <Image Source="lns_azul_claro.png" Height="30" HorizontalAlignment="Left" Margin="16 0 0 0 "/>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 0 86 0">HADE Manager</TextBlock>
+    <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="312">
+                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                                    DockPanel.Dock="Top"
+                                    HorizontalAlignment="Right" Margin="16"
+                                    IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Source="lns_azul_claro.png" Width="300"></Image>
+                        <ListBox Grid.Row="1" x:Name="MenuItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
+                             ItemsSource="{Binding MenuItems}"
+                             PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="MenuItem" >
+                                    <StackPanel Orientation="Horizontal" Height="34">
+                                        <materialDesign:PackIcon Kind="{Binding ItemIcon}" Height="24" Width="24" VerticalAlignment="Center" Margin="16 0 0 0"
+                                                                 Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+                                        <TextBlock Margin="16 0 0 0" Text="{Binding Name}" VerticalAlignment="Center" FontSize="16" FontWeight="Medium"
+                                                   Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
                 </DockPanel>
-            </materialDesign:ColorZone>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Column="0" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" materialDesign:ShadowAssist.ShadowDepth="Depth3">
-                        <StackPanel Orientation="Horizontal" Margin="16 0 8 8" HorizontalAlignment="Left">
-                            <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 4 0" x:Name="HomeButton"
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            
+            <DockPanel>
+                <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                            Mode="PrimaryMid" DockPanel.Dock="Top">
+                    <DockPanel>
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
+                                        x:Name="MenuToggleButton"/>
+                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                            <StackPanel>
+                                <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
+                                <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
+                                <Button Content="Can't Touch This" IsEnabled="False" />
+                                <Separator/>
+                                <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                        <!--<Image Source="lns_azul_claro.png" Height="30" HorizontalAlignment="Left" Margin="16 0 0 0 "/>-->
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 0 0 0">HADE Manager</TextBlock>
+                    </DockPanel>
+                </materialDesign:ColorZone>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer Grid.Column="0" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                            <StackPanel Orientation="Horizontal" Margin="16 0 8 8" HorizontalAlignment="Left">
+                                <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 4 0" x:Name="HomeButton"
                     ToolTip="Resource name: MaterialDesignFlatButton" ToolTipService.InitialShowDelay="500">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Home" />
-                                    <AccessText Margin="8 0 0 0" Text="_Home"/>
-                                </StackPanel>
-                            </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="RondinButton"
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Home" />
+                                        <AccessText Margin="8 0 0 0" Text="_Home"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="RondinButton"
                     ToolTip="Resource name: MaterialDesignFlatButton">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Verified" />
-                                    <AccessText Margin="8 0 0 0" Text="_Rondines"/>
-                                </StackPanel>
-                            </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="SolicitudButton"
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Verified" />
+                                        <AccessText Margin="8 0 0 0" Text="_Rondines"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="SolicitudButton"
                     ToolTip="Resource name: MaterialDesignFlatButton">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="EmailOutline" />
-                                    <AccessText Margin="8 0 0 0" Text="_Solicitudes de Soporte"/>
-                                </StackPanel>
-                            </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="OrdenButton"
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="EmailOutline" />
+                                        <AccessText Margin="8 0 0 0" Text="_Solicitudes de Soporte"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="OrdenButton"
                     ToolTip="Resource name: MaterialDesignFlatButton">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Wrench" />
-                                    <AccessText Margin="8 0 0 0" Text="_Ordenes de Servicio"/>
-                                </StackPanel>
-                            </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="StockButton"
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Wrench" />
+                                        <AccessText Margin="8 0 0 0" Text="_Ordenes de Servicio"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="StockButton"
                     ToolTip="Resource name: MaterialDesignFlatButton">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="PackageVariantClosed" />
-                                    <AccessText Margin="8 0 0 0" Text="_Stock"/>
-                                </StackPanel>
-                            </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="VerificaButton"
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="PackageVariantClosed" />
+                                        <AccessText Margin="8 0 0 0" Text="_Stock"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="VerificaButton"
                     ToolTip="Resource name: MaterialDesignFlatButton">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="CheckboxMultipleMarkedOutline" />
-                                    <AccessText Margin="8 0 0 0" Text="_Verificaciones"/>
-                                </StackPanel>
-                            </Button>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="UsuariosButton"
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="CheckboxMultipleMarkedOutline" />
+                                        <AccessText Margin="8 0 0 0" Text="_Verificaciones"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="UsuariosButton"
                     ToolTip="Resource name: MaterialDesignFlatButton">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="AccountMultiple" />
-                                    <AccessText Margin="8 0 0 0" Text="_Usuarios"/>
-                                </StackPanel>
-                            </Button>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="AccountMultiple" />
+                                        <AccessText Margin="8 0 0 0" Text="_Usuarios"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="16 0 8 8" HorizontalAlignment="Right">
+                            <materialDesign:Chip Content="Karen Escribano" Margin="0 12 8 0">
+                                <materialDesign:Chip.Icon>
+                                    <Image Source="favicon.ico" />
+                                </materialDesign:Chip.Icon>
+                            </materialDesign:Chip>
                         </StackPanel>
+                    </Grid>
+                    <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" />
+
+                    <ScrollViewer Grid.Row="1" 
+                                  HorizontalScrollBarVisibility="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
+                                  VerticalScrollBarVisibility="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}" 
+                                  Padding="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.MarginRequirement}">
+                        <ContentControl Content="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.Content}" />
                     </ScrollViewer>
-                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="16 0 8 8" HorizontalAlignment="Right">
-                        <materialDesign:Chip Content="Karen Escribano" Margin="0 12 8 0">
-                            <materialDesign:Chip.Icon>
-                                <Image Source="favicon.ico" />
-                            </materialDesign:Chip.Icon>
-                        </materialDesign:Chip>
-                    </StackPanel>
+
+                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" MinWidth="10" Grid.Row="1" />
+
                 </Grid>
-                <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" />
-
-                <ScrollViewer Grid.Row="1" 
-                                  HorizontalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
-                                  VerticalScrollBarVisibility="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}" 
-                                  Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}">
-                    <ContentControl Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
-                </ScrollViewer>
-
-                <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" MinWidth="10" Grid.Row="1" />
-
-            </Grid>
-        </DockPanel>
+            </DockPanel>
+        </materialDesign:DrawerHost>
     </materialDesign:DialogHost>
 
 </Window>

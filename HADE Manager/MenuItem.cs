@@ -8,20 +8,23 @@ using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Windows.Markup;
+using MaterialDesignThemes.Wpf;
 
 namespace HADE_Manager
 {
     public class MenuItem : INotifyPropertyChanged
     {
         private string _name;
+        private string _itemIcon;
         private object _content;
         private ScrollBarVisibility _horizontalScrollBarVisibilityRequirement;
         private ScrollBarVisibility _verticalScrollBarVisibilityRequirement;
         private Thickness _marginRequirement = new Thickness(16);
 
-        public MenuItem(string name, object content)
+        public MenuItem(string name, string itemIcon, object content)
         {
             _name = name;
+            ItemIcon = itemIcon;
             Content = content;
         }
 
@@ -37,6 +40,12 @@ namespace HADE_Manager
             set { this.MutateVerbose(ref _content, value, RaisePropertyChanged()); }
         }
 
+        public string ItemIcon
+        {
+            get { return _itemIcon; }
+            set { this.MutateVerbose(ref _itemIcon, value, RaisePropertyChanged()); }
+        }
+        
         public ScrollBarVisibility HorizontalScrollBarVisibilityRequirement
         {
             get { return _horizontalScrollBarVisibilityRequirement; }

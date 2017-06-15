@@ -9,10 +9,38 @@ namespace HADE_Manager
     {
         public MainWindowViewModel()
         {
-            //MenuItems = new[]
-            //{
-                //new MenuItem("Home", new Home()
-                //    ),
+            MenuItems = new[]
+            {
+
+                new MenuItem("Home", "Home", new Home())
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto,
+                    HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
+                new MenuItem("Rodines","Verified", new Rondines())
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
+                new MenuItem("Solicitudes de Soporte","EmailOutline", new Rondines())
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
+                new MenuItem("Ordenes de Servicio","Wrench", new Cambios())
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
+                new MenuItem("Stock","PackageVariantClosed", new Cambios())
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
+                new MenuItem("Verificaciones Pendientes","CheckboxMultipleMarkedOutline", new Cambios())
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto,
+                    HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
+                new MenuItem("Usuarios","AccountMultiple", new Cards()
+                ),
+
                 //new MenuItem("Palette", new PaletteSelector { DataContext = new PaletteSelectorViewModel() } 
                 //    ),
                 //new MenuItem("Buttons & Toggles", new Buttons())
@@ -46,7 +74,7 @@ namespace HADE_Manager
                 //    {
                 //        VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto   
                 //    },  
-            //};
+            };
         }
 
         public MenuItem[] MenuItems { get; }
