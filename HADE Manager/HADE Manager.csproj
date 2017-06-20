@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -81,6 +81,9 @@
     <Compile Include="Cambios.xaml.cs">
       <DependentUpon>Cambios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Usuarios.xaml.cs">
+      <DependentUpon>Usuarios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\ListsAndGridsViewModel.cs" />
     <Compile Include="Classes\NotEmptyValidationRule.cs" />
     <Compile Include="Classes\SelectableViewModel.cs" />
@@ -92,6 +95,10 @@
     <Page Include="Cambios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Usuarios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Cards.xaml">
       <SubType>Designer</SubType>
@@ -162,7 +169,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="favicon.ico" />
+    <Resource Include="Resources\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -177,8 +184,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="LNS-FINAL-V2-1024x382.png" />
-    <Resource Include="lns_azul_claro.png" />
+    <Resource Include="Resources\LNS-FINAL-V2-1024x382.png" />
+    <Resource Include="Resources\lns_azul_claro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\1.jpg" />
+    <Resource Include="Resources\3.jpg" />
+    <Resource Include="Resources\4.jpg" />
+    <Resource Include="Resources\5.jpg" />
+    <Resource Include="Resources\7.jpg" />
+    <Resource Include="Resources\8.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

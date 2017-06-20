@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Icon="favicon.ico"
+        Icon="Resources/favicon.ico"
         mc:Ignorable="d"
         Title="HADE Manager" Height="600" Width="1240">
     <Window.Resources>
@@ -39,8 +39,28 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Image Grid.Row="0" Source="lns_azul_claro.png" Width="300"></Image>
-                        <ListBox Grid.Row="1" x:Name="MenuItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
+                        <materialDesign:Card >
+                            <Grid Width="312" Margin="0 8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <!---->
+                                <Image Grid.Row="0" Source="Resources/LNS-FINAL-V2-1024x382.png" Width="Auto" Margin="24" Opacity="50"/>
+                                <Button Grid.Row="0" Margin="24 0 0 8" Height="64" Width="64" Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                                        HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                </Button>
+                                <Ellipse Grid.Row="0" Margin="24 0 0 8" Height="64" Width="64" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsHitTestVisible="False">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="Resources/3.jpg"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Grid.Row="1" Text="Marie Johnson" Padding="24 8 8 8"/>
+                                <TextBlock Grid.Row="2" Text="Administrador de Hardware" Padding="24 8 8 8"/>
+                            </Grid>
+                        </materialDesign:Card>
+                        <ListBox Grid.Row="1" x:Name="MenuItemsListBox" SelectedIndex="0"                         
                              ItemsSource="{Binding MenuItems}"
                              PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
                             <ListBox.ItemTemplate>
@@ -89,63 +109,56 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <ScrollViewer Grid.Column="0" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                        <ScrollViewer Grid.Column="0" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                             <StackPanel Orientation="Horizontal" Margin="16 0 8 8" HorizontalAlignment="Left">
-                                <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 4 0" x:Name="HomeButton"
+                                <!--<Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 12 4 0" x:Name="HomeButton"
                     ToolTip="Resource name: MaterialDesignFlatButton" ToolTipService.InitialShowDelay="500">
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="Home" />
                                         <AccessText Margin="8 0 0 0" Text="_Home"/>
                                     </StackPanel>
-                                </Button>
-                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="RondinButton"
-                    ToolTip="Resource name: MaterialDesignFlatButton">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Verified" />
-                                        <AccessText Margin="8 0 0 0" Text="_Rondines"/>
-                                    </StackPanel>
-                                </Button>
-                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="SolicitudButton"
-                    ToolTip="Resource name: MaterialDesignFlatButton">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="EmailOutline" />
-                                        <AccessText Margin="8 0 0 0" Text="_Solicitudes de Soporte"/>
-                                    </StackPanel>
-                                </Button>
-                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="OrdenButton"
-                    ToolTip="Resource name: MaterialDesignFlatButton">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Wrench" />
-                                        <AccessText Margin="8 0 0 0" Text="_Ordenes de Servicio"/>
-                                    </StackPanel>
-                                </Button>
-                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="StockButton"
-                    ToolTip="Resource name: MaterialDesignFlatButton">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="PackageVariantClosed" />
-                                        <AccessText Margin="8 0 0 0" Text="_Stock"/>
-                                    </StackPanel>
-                                </Button>
-                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="VerificaButton"
-                    ToolTip="Resource name: MaterialDesignFlatButton">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="CheckboxMultipleMarkedOutline" />
-                                        <AccessText Margin="8 0 0 0" Text="_Verificaciones"/>
-                                    </StackPanel>
-                                </Button>
-                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 12 4 0" x:Name="UsuariosButton"
-                    ToolTip="Resource name: MaterialDesignFlatButton">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="AccountMultiple" />
-                                        <AccessText Margin="8 0 0 0" Text="_Usuarios"/>
-                                    </StackPanel>
-                                </Button>
+                                </Button>-->
+
+                                <materialDesign:Chip Content="Fallos" Margin="0 12 4 0"
+                                                     ToolTip="Fallos registrados en espera de soporte"
+                                                     IconBackground="{StaticResource SecondaryAccentBrush}"
+                                                     IconForeground="{StaticResource SecondaryAccentForegroundBrush}">
+                                    <materialDesign:Chip.Icon>
+                                        <TextBlock FontSize="14" Text="24">
+                                        </TextBlock>
+                                    </materialDesign:Chip.Icon>
+                                </materialDesign:Chip>
+                                <materialDesign:Chip Content="Verificaciones Pendientes" Margin="16 12 4 0"
+                                                     ToolTip="Entradas en espera de ser validadas"
+                                                     IconBackground="{StaticResource PrimaryHueMidBrush}" 
+                                                     IconForeground="{StaticResource PrimaryHueMidForegroundBrush}">
+                                    <materialDesign:Chip.Icon>
+                                        <TextBlock FontSize="14" Text="11">
+                                        </TextBlock>
+                                    </materialDesign:Chip.Icon>
+                                </materialDesign:Chip>
+                                <materialDesign:Chip Content="Rondines realizados" Margin="16 12 4 0" 
+                                                     ToolTip="Cantidad de rondines registrados el día de hoy"
+                                                     IconBackground="{StaticResource PrimaryHueLightBrush}" 
+                                                     IconForeground="{StaticResource PrimaryHueLightForegroundBrush}">
+                                    <materialDesign:Chip.Icon>
+                                        <TextBlock FontSize="14" Text="0" >
+                                        </TextBlock>
+                                    </materialDesign:Chip.Icon>
+                                </materialDesign:Chip>
                             </StackPanel>
                         </ScrollViewer>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="16 0 8 8" HorizontalAlignment="Right">
-                            <materialDesign:Chip Content="Karen Escribano" Margin="0 12 8 0">
+                            <materialDesign:Chip Content="Marie Johnson"
+                                 IsDeletable="True"
+                                 Margin="0 12 8 0"
+                                 x:Name="UserChip"
+                                 ToolTip="Perfil de usuario"
+                                 DeleteToolTip="Cerrar sesión">
+                                <!--="UserChip_OnClick"
+                                 DeleteClick="UserChip_OnDeleteClick"-->
                                 <materialDesign:Chip.Icon>
-                                    <Image Source="favicon.ico" />
+                                    <Image Source="Resources/favicon.ico"></Image>
                                 </materialDesign:Chip.Icon>
                             </materialDesign:Chip>
                         </StackPanel>

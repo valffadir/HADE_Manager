@@ -38,8 +38,10 @@ namespace HADE_Manager
                     VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto,
                     HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                 },
-                new MenuItem("Usuarios","AccountMultiple", new Cards()
-                ),
+                new MenuItem("Usuarios","AccountMultiple", new Usuarios()
+                ){
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
 
                 //new MenuItem("Palette", new PaletteSelector { DataContext = new PaletteSelectorViewModel() } 
                 //    ),
